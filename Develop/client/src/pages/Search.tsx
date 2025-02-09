@@ -19,14 +19,14 @@ export function Search() {
 
   return (
     <div className="space-y-12">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Search</h1>
       </div>
 
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Looking for Work Section */}
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl shadow-xl overflow-hidden">
-          <div className="p-8 sm:p-10">
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl shadow-xl overflow-hidden h-full">
+          <div className="p-8 sm:p-10 flex flex-col h-full">
             <div className="flex items-center gap-4">
               <div className="p-3 bg-white bg-opacity-10 rounded-lg">
                 <UserIcon className="h-8 w-8 text-white" />
@@ -37,7 +37,7 @@ export function Search() {
               </div>
             </div>
             
-            <div className="mt-8">
+            <div className="mt-8 flex-grow flex items-end">
               <button
                 onClick={() => handleActionClick('/work')}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors"
@@ -56,8 +56,8 @@ export function Search() {
         </div>
 
         {/* Looking to Hire Section */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl shadow-xl overflow-hidden">
-          <div className="p-8 sm:p-10">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl shadow-xl overflow-hidden h-full">
+          <div className="p-8 sm:p-10 flex flex-col h-full">
             <div className="flex items-center gap-4">
               <div className="p-3 bg-white bg-opacity-10 rounded-lg">
                 <BriefcaseIcon className="h-8 w-8 text-white" />
@@ -68,7 +68,7 @@ export function Search() {
               </div>
             </div>
             
-            <div className="mt-8">
+            <div className="mt-8 flex-grow flex items-end">
               <button
                 onClick={() => handleActionClick('/work')}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-colors"

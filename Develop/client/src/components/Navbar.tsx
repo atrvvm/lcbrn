@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Briefcase, FolderKanban, User, Languages } from 'lucide-react';
+import { Search, Briefcase, FolderKanban, User, Languages, LogIn } from 'lucide-react';
 import { useAuthStore } from '../lib/store';
 
 const NavLink = ({ to, icon: Icon, label }: { to: string; icon: React.ElementType; label: string }) => {
@@ -31,14 +31,13 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
-              <Briefcase className="h-8 w-8 text-indigo-600" />
               <span className="text-xl font-bold text-gray-900">LCBRN</span>
             </Link>
           </div>
 
           <div className="hidden sm:flex sm:items-center sm:gap-4">
             <NavLink to="/search" icon={Search} label="Search" />
-            <NavLink to="/services" icon={Briefcase} label="Services" />
+            <NavLink to="/candidate" icon={User} label="Candidate" />
             <NavLink to="/work" icon={FolderKanban} label="Work" />
             <NavLink to="/translate" icon={Languages} label="Translate" />
             {user ? (
@@ -48,7 +47,7 @@ export function Navbar() {
                 to="/login"
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
               >
-                <User size={20} />
+                <LogIn size={20} />
                 <span>Login</span>
               </Link>
             )}

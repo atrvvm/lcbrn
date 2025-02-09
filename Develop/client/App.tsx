@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Navbar } from './src/components/Navbar';
 import { Search } from './src/pages/Search';
-import { Candidates } from './src/pages/Candidate';
 import { Work } from './src/pages/Work';
 import { Profile } from './src/pages/Profile';
 import { Translate } from './src/pages/Translate';
 import { Login } from './src/pages/Login';
 import { Register } from './src/pages/Register';
 import { ProtectedRoute } from './src/components/ProtectedRoute';
+import { Navbar } from './src/components/NavBar';
+import { Candidates } from './src/pages/Candidate';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <Route path="/" element={<Search />} />
             {/* Keep search route for direct navigation */}
             <Route path="/search" element={<Navigate to="/" replace />} />
-            <Route path="/services" element={<Candidates />} />
+            <Route path="/candidate" element={<Candidates />} />
             <Route path="/work" element={<Work />} />
             <Route path="/translate" element={<Translate />} />
             <Route path="/login" element={<Login />} />
