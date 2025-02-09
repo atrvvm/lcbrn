@@ -22,7 +22,7 @@ const NavLink = ({ to, icon: Icon, label }: { to: string; icon: React.ElementTyp
   );
 };
 
-export function Navbar() {
+export function NavBar() {
   const user = useAuthStore((state) => state.user);
 
   return (
