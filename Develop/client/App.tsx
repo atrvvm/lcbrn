@@ -7,14 +7,15 @@ import { Translate } from './src/pages/Translate';
 import { Login } from './src/pages/Login';
 import { Register } from './src/pages/Register';
 import { ProtectedRoute } from './src/components/ProtectedRoute';
-import { Navbar } from './src/components/NavBar';
 import { Candidates } from './src/pages/Candidate';
+import { NavBar } from './src/components/NavBar';
+
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
-        <Navbar />
+        <NavBar />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <Routes>
             {/* Redirect root to search */}
