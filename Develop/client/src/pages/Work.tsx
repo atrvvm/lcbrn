@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, X, MapPin, Clock, FileCheck } from 'lucide-react';
+import { Plus, X, MapPin, Clock, FileCheck, Search } from 'lucide-react';
 import { useAuthStore } from '../lib/store';
 
 interface WorkListing {
@@ -46,6 +46,8 @@ export function Work() {
   const user = useAuthStore((state) => state.user);
   const [showForm, setShowForm] = useState(false);
   const [listings, setListings] = useState<WorkListing[]>(initialListings);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [locationFilter, setLocationFilter] = useState('');
   const [newListing, setNewListing] = useState<Partial<WorkListing>>({
     title: '',
     description: '',
@@ -57,7 +59,15 @@ export function Work() {
     skills: []
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const filteredListings = listings.filter(listing => {
+    const matchesSearch = listing.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         listing.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         listing.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesLocation = locationFilter === '' || listing.location.toLowerCase().includes(locationFilter.toLowerCase());
+    return matchesSearch && matchesLocation;
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
 
@@ -111,7 +121,7 @@ export function Work() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pt-[8rem]">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-gray-900">Work Listings</h1>
         {user && (
@@ -123,6 +133,36 @@ export function Work() {
             <span>Post Listing</span>
           </button>
         )}
+      </div>
+
+      {/* Search and Filter Section */}
+      <div className="bg-white p-4 rounded-lg shadow-sm space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search by title, description, or skills..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <MapPin className="h-5 w-5 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              placeholder="Filter by location..."
+              value={locationFilter}
+              onChange={(e) => setLocationFilter(e.target.value)}
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
       </div>
 
       {showForm && (
@@ -264,7 +304,7 @@ export function Work() {
       )}
 
       <div className="grid grid-cols-1 gap-6">
-        {listings.map((listing) => (
+        {filteredListings.map((listing) => (
           <div key={listing.id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="p-6">
               <div className="flex justify-between items-start">

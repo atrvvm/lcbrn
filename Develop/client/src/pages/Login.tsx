@@ -12,7 +12,7 @@ export function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Simulate authentication - replace with your actual auth logic
+      // Simulate authentication - replace with actual auth logic
       if (email && password) {
         setUser({
           id: '1',
@@ -28,7 +28,7 @@ export function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="max-w-md mx-auto mt-10 space-y-8 pt-[8rem]">
       <div className="bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Login</h2>
         {error && (

@@ -5,7 +5,7 @@ export function Translate() {
   const [targetLanguage, setTargetLanguage] = useState('es');
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto space-y-8 pt-[8rem]">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Translation Service</h1>
       
       <div className="space-y-6">
